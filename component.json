@@ -1,0 +1,22 @@
+{
+
+  "name": "progress",
+  "description": "Progress indicator with animation and easing",
+  "version": "0.0.1",
+  "keywords": [
+    "progress",
+    "loading",
+    "ui"
+  ],
+  "scripts": [
+    "index.js"
+  ],
+  "dependencies": {
+    "component/progress": "*",
+    "component/raf": "*",
+    "component/ease": "*",
+    "component/autoscale-canvas": "*"
+  },
+  "license": "MIT"
+
+}

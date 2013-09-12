@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Progress</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../build/build.css" />
+    <style>
+      body {
+        padding: 100px;
+        background-color: rgba(0,0,0,0.5);
+      }
+      canvas {
+        padding: 5px;   
+      }
+    </style>
+  </head>
+  <body>
+    <script src="../build/build.js"></script>
+    <script>
+
+    (function(){
+      var Progress = require('progress');
+
+      var progress = new Progress;
+      progress.size(100).font('Roboto Condensed, sans-serif');
+      document.body.appendChild(progress.el);
+
+      progress.update(100).animate(30);
+    })();
+
+    (function(){
+      var Progress = require('progress');
+
+      var progress = new Progress;
+      progress.size(200).text('form detection').font('Roboto Condensed, sans-serif')
+      progress.color('rgba(254,110,32,1)');
+      document.body.appendChild(progress.el);
+
+      progress.animate(60, 'inOutQuart')
+    })();
+
+    (function(){
+      var Progress = require('progress');
+
+      var progress = new Progress;
+      progress.size(150).text('1click').font('Roboto Condensed, sans-serif')
+      document.body.appendChild(progress.el);
+
+      progress.animate(70, 'inOutCirc')
+    })();
+
+    // (function(){
+    //   var Progress = require('progress');
+
+    //   var progress = new Progress;
+    //   progress.size(200);
+    //   document.body.appendChild(progress.el);
+    //   progress.animate(100);
+    //   setTimeout(function(){ progress.animate(30) }, 2000);
+    // })();
+
+    // (function(){
+    //   var Progress = require('progress');
+
+    //   var progress = new Progress;
+    //   progress.size(50).fontSize(8);
+    //   document.body.appendChild(progress.el);
+    //   progress.animate(100);
+    //   setTimeout(function(){ progress.animate(30) }, 2000);
+    // })();
+
+    </script>
+  </body>
+</html>
