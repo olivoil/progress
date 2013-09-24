@@ -24,7 +24,6 @@ function Progress(){
   this.size(50);
   this.fontSize(24);
   this.color('rgba(31,190,242,1)');
-  this.fontColor('black');
   this.font('helvetica, arial, sans-serif');
 }
 
@@ -33,35 +32,6 @@ function Progress(){
  */
 
 Progress.prototype.__proto__ = P.prototype;
-
-/**
- * Set progress size to `n`.
- *
- * @param {Number} n
- * @return {Progress}
- * @api public
- */
-
-Progress.prototype.size = function(n){
-  this.el.width = n;
-  this.el.height = n;
-  autoscale(this.el);
-  return this;
-};
-
-/**
- * Update percentage to `n`.
- *
- * @param {Number} n
- * @return {Progress}
- * @api public
- */
-
-Progress.prototype.update = function(n, animate){
-  this.percent = n;
-  this.draw(this.ctx);
-  return this;
-};
 
 /**
  * Animate percentage to `n`.
@@ -106,19 +76,6 @@ Progress.prototype.animate = function(n, animation){
 }
 
 /**
- * Set font `color`.
- *
- * @param {String} color
- * @return {Progress}
- * @api public
- */
-
-Progress.prototype.fontColor = function(color){
-  this._fontColor = color;
-  return this;
-};
-
-/**
  * Set outter `color`.
  *
  * @param {String} col
@@ -148,7 +105,6 @@ Progress.prototype.draw = function(ctx){
     , y = half
     , rad = half - 1
     , fontSize = this._fontSize
-    , fontColor = this._fontColor
     , color = this._color
     , lineWidth = rad / 3;
 
