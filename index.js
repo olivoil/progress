@@ -25,6 +25,7 @@ function Progress(){
   this.fontSize(24);
   this.color('rgba(31,190,242,1)');
   this.font('helvetica, arial, sans-serif');
+  this.background('rgba(255,255,255,1)');
 }
 
 /**
@@ -37,19 +38,19 @@ Progress.prototype.__proto__ = P.prototype;
  * Animate percentage to `n`.
  *
  * @param {Number} n
- * @param {String} animation
+ * @param {String} easing
  * @return {Progress}
  * @api public
  */
 
-Progress.prototype.animate = function(n, animation){
+Progress.prototype.animate = function(n, easing){
   var self = this;
 
-  animation || (animation = 'linear');
+  easing || (easing = 'linear');
 
   raf.cancel(self.animation);
 
-  var duration = Math.abs(n - this.percent) * 2000 / 100
+  var duration = 2000 //Math.abs(n - this.percent) * 2000 / 100
     , start = Date.now()
     , end = start + duration
     , startx = this.percent
@@ -61,7 +62,7 @@ Progress.prototype.animate = function(n, animation){
       var now = Date.now();
       if (now - start >= duration) return self.update(n);
       var p = (now - start) / duration;
-      var val = ease[animation](p);
+      var val = ease[easing](p);
       x = startx + (destx - startx) * val;
       self.update(x);
       step();
@@ -85,6 +86,19 @@ Progress.prototype.animate = function(n, animation){
 
 Progress.prototype.color = function(col){
   this._color = col;
+  return this;
+}
+
+/**
+ * Set background color.
+ *
+ * @param {String} color
+ * @return {Progress}
+ * @api public
+ */
+
+Progress.prototype.background = function(color){
+  this._backgroundColor = color;
   return this;
 }
 
@@ -129,11 +143,10 @@ Progress.prototype.draw = function(ctx){
 
   // label circle
   ctx.beginPath();
-  ctx.arc(x, y, rad - lineWidth, 0, Math.PI * 2, true);
+  ctx.arc(x, y, rad - lineWidth, 0, Math.PI * 2, false);
   ctx.closePath();
-  ctx.fillStyle = 'rgba(255,255,255,1)';
+  ctx.fillStyle = this._backgroundColor;
   ctx.fill();
-
 
   // percent/label text
   ctx.font = fontSize + 'px ' + this._font;
@@ -142,7 +155,7 @@ Progress.prototype.draw = function(ctx){
 
   ctx.fillStyle = color;
   ctx.fillText(
-      text
+       text
     , x - w / 2 + 1
     , y + fontSize / 2 - 1);
 

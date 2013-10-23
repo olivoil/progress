@@ -50,6 +50,22 @@
       progress.animate(70, 'inOutCirc')
     })();
 
+    (function(){
+      var Progress = require('progress');
+
+      var progress = new Progress;
+
+      progress.size(200)
+              .text('form detection')
+              .font('Roboto Condensed, sans-serif')
+              .color('rgba(0,0,0,1)')
+              .background('RGBA(255, 255, 178, 1)')
+
+      document.body.appendChild(progress.el);
+
+      progress.animate(99, 'inOutQuart')
+    })();
+
     // (function(){
     //   var Progress = require('progress');
 
